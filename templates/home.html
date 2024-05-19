@@ -50,9 +50,10 @@
             {% if search_results %}
                 <h2>Search Results:</h2>
                 <ul class="list-group">
-                    {% for result in search_results %}
-                        <li class="list-group-item">{{ result }}</li>
-                    {% endfor %}
+                    
+                    {% for key, value in search_results.items() %}
+                <li class="list-group-item"><a href="#">{{ key }}: {{ value }}</a></li>
+            {% endfor %}
                 </ul>
             {% endif %}
             
