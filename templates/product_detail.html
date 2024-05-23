@@ -1,0 +1,97 @@
+<!-- templates/product_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+</head>
+<body>
+    <h1>Product Detail</h1>
+    {% if product_info %}
+
+        <h2> {{ product_info.product_name }}</h2>
+        <h3> {{ product_info.brand }}</h3>
+        
+        
+        {% for conc in product_info.final_conc %}
+                    <p>{{ conc }}</p>
+                {% endfor %}
+        <img src={{ product_info.image }}>
+        <h3>Nutri Score</h3>
+        <h4>{{ product_info.nutri_score }}</h4>
+        {% if product_info.conclusions %}
+            <ul>
+                {% for conc in product_info.conclusions %}
+                    <li>{{ conc }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No conclusions specified.</p>
+        {% endif %}
+        <h3>Allergens detected</h3>
+        {% if product_info.allergens %}
+            <ul>
+                {% for allergy in product_info.allergens %}
+                    <li>{{ allergy }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No Allergens detected</p>
+        {% endif %}
+        <h3>Warnings</h3>
+        {% if product_info.warnings %}
+            <ul>
+                {% for war in product_info.warnings %}
+                    <li>{{ war }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No Warnings detected</p>
+        {% endif %}
+
+        
+    
+        <h3>Ingridients</h3>
+        <p> {{ product_info.ingridients }}</p>
+
+        <h3>Nutients per 100g</h3>
+        <p> Energy {{ product_info.energy }}</p>
+        <p> Fat {{ product_info.fat }}</p>
+        <p> Saturated fat{{ product_info.saturated_fat }}</p>
+        <p> Trans fat {{ product_info.trans_fat }}</p>
+        <p> Cholestrol {{ product_info.cholestrol }}</p>
+        <p> Carbohydartes {{ product_info.carbs }}</p>
+        <p> Sugar {{ product_info.sugar }}</p>
+        <p> Fiber {{ product_info.fiber }}</p>
+        <p> Protein {{ product_info.protein }}</p>
+        <p> Salt {{ product_info.salt }}</p>
+        <p> Sodium {{ product_info.sodium }}</p>
+
+        <h2>List of things to avoid for your health condition</h2>
+        <h3>Foods to avoid</h3>
+        <p>
+            {% for item in product_info.foods_avoid %}
+                {{ item }}, {% if not loop.last %} {% endif %}
+            {% endfor %}
+        </p>
+        <h3>Ingridients to avoid</h3>
+        <p>
+            {% for item in product_info.ing_avoid %}
+                {{ item }} , {% if not loop.last %} {% endif %}
+            {% endfor %}
+        </p>
+        <h3>Food categories to avoid</h3>
+        <p>
+            {% for item in product_info.cat_avoid %}
+                {{ item }}, {% if not loop.last %} {% endif %}
+            {% endfor %}
+        </p>
+    {% else %}
+        <p>Product not found.</p>
+    {% endif %}
+
+
+    <a href="{{ url_for('home') }}">Back to Home</a>
+</body>
+</html>

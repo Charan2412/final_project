@@ -52,7 +52,7 @@
                 <ul class="list-group">
                     
                     {% for key, value in search_results.items() %}
-                <li class="list-group-item"><a href="#">{{ key }}: {{ value }}</a></li>
+                <li class="list-group-item"><a href="{{ url_for('product_detail', key=key) }}">{{ key }}: {{ value }}</a></li>
             {% endfor %}
                 </ul>
             {% endif %}
